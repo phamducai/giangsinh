@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Love Letter</title>
+
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Courier";
+      }
+
+      .letter-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url("./img/christmas.jpg");
+        background-repeat: none;
+        background-size: cover;
+        background-position: center;
+        border-right: 0.15em solid orange;
+      }
+
+      .letter-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #3c3c3c;
+        opacity: 0.5;
+      }
+
+      .letter {
+        color: white;
+        background-color: transparent;
+        border: solid 2px rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 10px rgba(255, 255, 255);
+        border-radius: 20px;
+        height: fit-content;
+        width: 700px;
+        padding: 20px;
+        z-index: 20;
+      }
+
+      .letter p {
+        opacity: 0;
+        font-size: 14px;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .letter h1 {
+        overflow: hidden;
+        white-space: nowrap;
+        animation: type 3.5s;
+      }
+
+      .letter p:nth-of-type(1) {
+        animation: type 3s;
+        animation-delay: 3.5s;
+        animation-fill-mode: forwards;
+      }
+
+      .letter p:nth-of-type(2) {
+        animation: type 3s;
+        animation-delay: 7s;
+        animation-fill-mode: forwards;
+      }
+
+      .letter p:nth-of-type(3) {
+        animation: type 3s;
+        animation-delay: 10.5s;
+        animation-fill-mode: forwards;
+      }
+
+      .letter p:nth-of-type(4) {
+        animation: type 3s;
+        animation-delay: 14s;
+        animation-fill-mode: forwards;
+      }
+
+      .letter p:nth-of-type(5) {
+        animation: type 3s;
+        animation-delay: 17.5s;
+        animation-fill-mode: forwards;
+      }
+
+      .letter p:nth-of-type(6) {
+        animation: type 3s;
+        animation-delay: 21s;
+        animation-fill-mode: forwards;
+      }
+
+      .signature {
+        text-align: right;
+        font-style: italic;
+        margin-top: 20px;
+      }
+
+      @keyframes type {
+        0% {
+          width: 0;
+          opacity: 0;
+        }
+        1% {
+          opacity: 1;
+        }
+        99% {
+          opacity: 1;
+          border-right: 0.15em solid orange;
+        }
+        100% {
+          opacity: 1;
+          width: 100%;
+          border: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section id="letterContainer" class="letter-container">
+      <div class="letter-overlay"></div>
+
+      <div class="letter">
+        <h1>Gửi Nhi ...</h1>
+        <br />
+        <p>Chúc em giáng sinh vui vẻ </p>
+        <br />
+        <p>
+          Anh không giỏi nói mấy lời hoa mỹ, chỉ muốn nói thật lòng là
+          <b>em rất đặc biệt</b>
+        </p>
+
+        <br />
+        <p>Nếu em chưa có ai đón Giáng sinh cùng, chủ nhật tuần này mình đi chơi với nhau nhé?</p>
+        <!-- <p>
+          Vậy… anh có thể trở thành người đặc biệt trong đêm Giáng sinh của em
+          chứ?
+        </p> -->
+        <br />
+        <p class="signature">Anh chờ câu trả lời của em nhé ❤️</p>
+      </div>
+    </section>
+  </body>
+</html>

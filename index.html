@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fbabab;
+        overflow: hidden;
+      }
+
+      .envelope-container {
+        transition: all 500ms ease;
+      }
+
+      .envelope {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        background-color: rgba(10, 10, 10, 0.1);
+        border-radius: 10px;
+        z-index: 1;
+        animation: shake 1s ease-in-out infinite;
+      }
+
+      .envelope .top-flap {
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-left: 150px solid transparent;
+        border-right: 150px solid transparent;
+        border-top: 120px solid #fde4e4;
+        z-index: 10;
+        border-radius: 10px;
+        transition: all 500ms ease;
+      }
+
+      .envelope .top-flap-shadow {
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-left: 150px solid transparent;
+        border-right: 150px solid transparent;
+        border-top: 140px solid rgba(0, 0, 0, 0.1);
+        z-index: 5;
+        border-radius: 10px;
+      }
+
+      .envelope .left-flap {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-top: 100px solid transparent;
+        border-bottom: 100px solid transparent;
+        border-left: 150px solid #f5887e;
+        z-index: 5;
+        border-radius: 10px;
+      }
+
+      .envelope .right-flap {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-top: 100px solid transparent;
+        border-bottom: 100px solid transparent;
+        border-right: 150px solid #f5887e;
+        z-index: 5;
+        border-radius: 10px;
+      }
+
+      .envelope .bottom-flap {
+        position: absolute;
+        bottom: 0;
+        width: 0;
+        height: 0;
+        border-left: 150px solid transparent;
+        border-right: 150px solid transparent;
+        border-bottom: 120px solid #fce3e3df;
+        z-index: 5;
+        border-radius: 10px;
+      }
+
+      .envelope .heart-btn {
+        background-color: transparent;
+        border: none;
+        position: absolute;
+        top: 100px;
+        left: 50%;
+        transform: translate(-50%, -20px);
+        z-index: 10;
+      }
+
+      .envelope .heart {
+        color: #b52b2b;
+        font-size: 55px;
+        transition: all 300ms ease;
+      }
+
+      .envelope .heart:hover {
+        color: #fa3b3b;
+        cursor: pointer;
+      }
+
+      .envelope .letter {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        height: 150px;
+        width: 90%;
+        background-color: #fff;
+        border: solid 1px #ffde21;
+        border-radius: 5px;
+        z-index: 2;
+        opacity: 0;
+        transform: translateX(-50%);
+        transition: all 500ms ease;
+      }
+
+      .envelope .letter:hover {
+        cursor: pointer;
+        top: -30px;
+        transform: translateX(-50%);
+      }
+
+      .flip {
+        transform: translateY(-120px) rotateX(180deg);
+      }
+
+      .float {
+        transform: translateY(-30px) translateX(-50%);
+      }
+
+      @keyframes shake {
+        0% {
+          rotate: -2deg;
+        }
+
+        50% {
+          rotate: 2deg;
+        }
+
+        100% {
+          rotate: -2deg;
+        }
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translateY(0px) translateX(-50%);
+        }
+
+        100% {
+          transform: translateY(-30px) translateX(-50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="envelope" class="envelope">
+      <div id="topFlap" class="top-flap"></div>
+      <div id="leftFlap" class="left-flap"></div>
+      <div id="rightFlap" class="right-flap"></div>
+      <div id="bottomFlap" class="bottom-flap"></div>
+
+      <div id="topFlapShadow" class="top-flap-shadow"></div>
+
+      <button id="heartBtn" class="heart-btn">
+        <i class="fa fa-heart heart"></i>
+      </button>
+
+      <button id="letter" class="letter">
+        <p>Anh có điều muốn nói ...</p>
+      </button>
+    </div>
+
+    <!-- JS -->
+
+    <script>
+      const envelope = document.getElementById("envelope");
+
+      const topFlap = document.getElementById("topFlap");
+      const topFlapShadow = document.getElementById("topFlapShadow");
+      const leftFlap = document.getElementById("leftFlap");
+      const rightFlap = document.getElementById("rightFlap");
+      const bottomFlap = document.getElementById("bottomFlap");
+
+      const heartBtn = document.getElementById("heartBtn");
+      const letter = document.getElementById("letter");
+
+      heartBtn.addEventListener("click", () => {
+        heartBtn.style.opacity = 0;
+        heartBtn.style.visibility = "hidden";
+
+        topFlapShadow.style.display = "none";
+
+        topFlap.style.transform = "translateY(-120px) rotateX(180deg)";
+        topFlap.style.zIndex = 1;
+
+        envelope.style.animation = "none";
+
+        letter.style.opacity = 1;
+
+        setTimeout(() => {
+          letter.style.transform = "translateY(-30px) translateX(-50%)";
+        }, 500);
+      });
+
+      letter.addEventListener("click", () => {
+        letter.disabled = true;
+        letter.style.transform = "translateY(-200px) translateX(-50%)";
+
+        setTimeout(() => {
+          topFlap.style.opacity = 0;
+          leftFlap.style.opacity = 0;
+          bottomFlap.style.opacity = 0;
+          rightFlap.style.opacity = 0;
+
+          letter.style.transform = "scale(12)";
+        }, 1000);
+
+        setTimeout(() => {
+          letter.style.backgroundColor = "#000";
+        }, 1500);
+
+        setTimeout(() => {
+          window.location.href = "letter.html";
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>
